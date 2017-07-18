@@ -1,5 +1,15 @@
 
-#psdext.js : .PSD extractor
+
+#psdext : .PSD extractor
+
+
+# require 
+require npm psd module
+
+```
+npm install --save psd
+```
+
 
 
 # 1. how to use
