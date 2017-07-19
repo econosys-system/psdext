@@ -138,12 +138,6 @@ left: ${obj.left - this.groups[parent_len]["left"]}px;
 top: ${obj.top - this.groups[parent_len]["top"]}px;
 width: ${max_width}px;
 height: 100%;
-/*
-_obj__left: ${obj.left}px;
-_obj__top: ${obj.top}px;
-_parent_group__left: ${this.groups[parent_len]["left"]}px;
-_parent_group__top: ${this.groups[parent_len]["top"]}px;
-*/
 `;
         } else {
             cssPos = `
@@ -158,7 +152,6 @@ ${cssPos}
   __width: ${obj.width}px;
   __height: ${obj.height}px;
     position: relative;
-/*    background-color: black; */
 }
 `;
         const html = `<div class="${obj.name}">\n`;
