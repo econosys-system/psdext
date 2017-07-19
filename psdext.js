@@ -1,6 +1,6 @@
 /**
  * @license
- * psdext.js 1.0.1
+ * psdext.js 1.0.2
  * Copyright 2017 econosys system    http://econosys-system.com/
  * Available under The MIT license
  */
@@ -14,7 +14,6 @@ class psdext {
   margin: 0;
   padding: 0;
   left: 0;
-  text-align: left;
   word-break: break-all;
   box-sizing: border-box;
 }
@@ -39,18 +38,28 @@ class psdext {
     }
 
     layerList() {
-        console.log("---------------------------------------------------------------------top layers");
+        console.log("-----------------------------------------------------------top layers");
         for (let k in this.dataPsd) {
             console.log(k);
         }
-        console.log("---------------------------------------------------------------------top layers");
+        console.log("-----------------------------------------------------------top layers \n");
     }
+
+
 
     extractText(obj_name) {
         if (!obj_name) {
             console.log('ERROR:psdext.exp(): please set arg "obj_name"');
             return false;
-        } else if (!this.dataPsd.hasOwnProperty(obj_name)) {
+        }
+        // else if ( obj_name === 'all' ) {
+        //     for (let k in this.dataPsd) {
+        //         this.exp(this.dataPsd[k]);
+        //         this.outputAll();
+        //         continue;
+        //     }
+        // }
+        else if (!this.dataPsd.hasOwnProperty(obj_name)) {
             console.log(`ERROR:psdext.exp(): layer ${obj_name} is not found. please select layer below.`);
             this.layerList();
             return false;
@@ -58,6 +67,8 @@ class psdext {
         this.exp(this.dataPsd[obj_name]);
         this.outputAll();
     }
+
+
 
     exp(obj) {
         this.depth++;
@@ -88,7 +99,13 @@ class psdext {
         }
 
         let len = this.groups.length - 1;
-        let group_depth = this.groups[len]["_depth"];
+
+        // let group_depth = this.groups[len]["_depth"];
+        let group_depth;
+        let tg = this.groups[len];
+        if ( tg ){
+            group_depth = this.groups[len]["_depth"];
+        }
         if (this.groupFlag === true && group_depth === this.depth) {
             this._groupEnd();
         }
@@ -262,7 +279,7 @@ ${cssName} {
     createAll() {
         this.outTemplate = `
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>PSD TEXT Extractor</title>
